@@ -9,6 +9,9 @@
                     <a>ここはユーザー同士のタスクを共有できるスケジュール管理サイトです。<br>
                         まずはユーザー登録をお願いします。<br>
                         ↓↓<a>
+                    <div>
+                        {!! link_to_route('signup.get', 'ユーザー登録', [], ['class' => 'btn btn-lg btn-primary']) !!}
+                    </div>
                 </div>
             </div>
         </div>
