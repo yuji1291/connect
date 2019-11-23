@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+     @if (Auth::check())
+        {{ Auth::user()->name }}
+    @else
     <div class="center jumbotron">
         <div class="text-center">
             <h1>ようこそ、Connect ver1.00へ</h1>
@@ -16,4 +19,5 @@
             </div>
         </div>
     </div>
+    @endif
 @endsection
