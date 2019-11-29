@@ -2,7 +2,13 @@
 
 @section('content')
      @if (Auth::check())
-        {{ Auth::user()->name }}
+     <div class="row">
+        <aside class="col-sm-4">
+            @include('users.card', ['user' => $user])
+        </aside>
+        <div class="col-sm-8">
+       @include('tasks.index',['tasks' => $tasks])
+       </div>
     @else
     <div class="center jumbotron">
         <div class="text-center">
