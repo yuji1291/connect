@@ -3,10 +3,10 @@
 @section('content')
      @if (Auth::check())
      <div class="row">
-        <aside class="col-sm-4">
+        <aside class="col-sm-2">
             @include('users.card', ['user' => $user])
         </aside>
-        <div class="col-sm-8">
+        <div class="col-sm-10">
        @include('tasks.index',['tasks' => $tasks])
        </div>
     @else

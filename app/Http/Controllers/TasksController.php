@@ -18,12 +18,7 @@ class TasksController extends Controller
                 'user' => $user,
                 'tasks' => $tasks,
             ];
-            //dd($tasks);
-            return view('tasks.index', [
-            'tasks' => $tasks,
-        ]);
         }
-        
         return view('welcome', $data);
     }
     

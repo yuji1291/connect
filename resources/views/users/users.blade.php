@@ -4,8 +4,12 @@
             <li class="media">
                 <img class="mr-2 rounded" src="{{ Gravatar::src($user->email, 50) }}" alt="">
                 <div class="media-body">
-                    <div>
+                     <div class="d-flex justify-content-start">
+                        <div>
                         {{ $user->name }}
+                        <p>{!! link_to_route('users.show', 'スケジュール', ['id' => $user->id]) !!}</p>
+                        </div>
+                    @include('user_follow.follow_button', ['user' => $user])
                     </div>
                 </div>
             </li>

@@ -1,6 +1,3 @@
-@extends('layouts.app')
-
-@section('content')
  @if ( count($tasks) > 0)
         <table class="table table-striped">
             <thead>
@@ -26,5 +23,43 @@
             </tbody>
         </table>
         @endif
+
+        
      {!! link_to_route('tasks.create', '新規タスクの作成', [], ['class' => 'btn btn-primary']) !!}
-@endsection
+     
+      <div id='calendar-view'></div>
+
+<script>
+  var calendar = $("#calendar-view").fullCalendar({
+  //ヘッダーの設定
+  header: {
+    left: "today month,basicWeek",
+    center: "title",
+    right: "prev next"
+  },
+  editable: true, // イベントを編集するか
+  allDaySlot: false, // 終日表示の枠を表示するか
+  eventDurationEditable: false, // イベント期間をドラッグしで変更するかどうか
+  slotEventOverlap: false, // イベントを重ねて表示するか
+  selectable: true,
+  selectHelper: true,
+  select: function(start, end, allDay) {
+    日の枠内を選択したときの処理;
+  },
+  eventClick: function(calEvent, jsEvent, view) {
+    イベントをクリックしたときの処理;
+    alare('suda');
+  },
+  droppable: true, // イベントをドラッグできるかどうか
+  events:[
+     @foreach($tasks as $task)
+      {
+      title:"{{ $task->title }}",
+      start:"{{ $task->start_date }}",
+      end:"{{ $task->end_date }}",
+  },
+  @endforeach
+  ]
+    });
+  
+</script>

@@ -5,6 +5,16 @@
         <title>Connect　ver1.00</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+        
+        <!-- full calendarの読み込み secure_asset　-->
+         <link rel="stylesheet" href="{{ secure_asset('fullcalendar/fullcalendar.css') }}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+  
+  <script src="{{ secure_asset('fullcalendar/lib/jquery.min.js') }}"></script>
+  <script src="{{ secure_asset('fullcalendar/lib/moment.min.js') }}"></script>
+  <script src="{{ secure_asset('fullcalendar/fullcalendar.js') }}"></script>
+  <script src="{{ secure_asset('fullcalendar/locale/ja.js') }}"></script>
+
     </head>
 
     <body>
