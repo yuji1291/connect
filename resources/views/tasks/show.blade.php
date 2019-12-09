@@ -26,6 +26,7 @@
             <td>{{ $task->content }}</td>
         </tr>
     </table>
+     @if (Auth::id() == $task->user_id)
     <div class="d-flex justify-content-start">
     {!! link_to_route('tasks.edit', 'このタスクを編集', ['id' => $task->id], ['class' => 'btn btn-light']) !!}
     
@@ -33,4 +34,5 @@
         {!! Form::submit('削除', ['class' => 'btn btn-danger']) !!}
     {!! Form::close() !!}
     </div>
+    @endif
 @endsection

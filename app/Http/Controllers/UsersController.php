@@ -20,9 +20,11 @@ class UsersController extends Controller
    public function show($id)
     {
         $user = User::find($id);
+        $tasks = $user->tasks()->orderBy('id', 'desc')->get();
 
         return view('users.show', [
             'user' => $user,
+            'tasks' => $tasks,
         ]);
     }
     

@@ -1,62 +1,53 @@
- @if ( count($tasks) > 0)
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>タイトル</th>
-                    <th>開始時刻</th>
-                    <th>終了時刻</th>
-                    <th>場所</th>
-                    <th>タスク</th>
-                </tr>
-            </thead>
-               
-            <tbody>
-                @foreach ($tasks as $task)
-                <tr>
-                    <td>{!! link_to_route('tasks.show', $task->title, ['title' => $task->id]) !!}</td>
-                    <td>{{ $task->start_date }} {{ $task->start_time }}</td>
-                    <td>{{ $task->end_date }} {{ $task->end_time }}</td>
-                    <td>{{ $task->place }}</td>
-                    <td>{{ $task->content }}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-        @endif
-
-        
+     @if (Auth::id() == $user->id)
      {!! link_to_route('tasks.create', '新規タスクの作成', [], ['class' => 'btn btn-primary']) !!}
-     
+     @endif
       <div id='calendar-view'></div>
+
 
 <script>
   var calendar = $("#calendar-view").fullCalendar({
   //ヘッダーの設定
   header: {
-    left: "today month,basicWeek",
+    left: "today month,agendaWeek,agendaDay",
     center: "title",
     right: "prev next"
   },
-  editable: true, // イベントを編集するか
+  editable: false, // イベントを編集するか
   allDaySlot: false, // 終日表示の枠を表示するか
   eventDurationEditable: false, // イベント期間をドラッグしで変更するかどうか
   slotEventOverlap: false, // イベントを重ねて表示するか
   selectable: true,
   selectHelper: true,
+  droppable: false, // イベントをドラッグできるかどうか
+	
   select: function(start, end, allDay) {
-    日の枠内を選択したときの処理;
+    //日の枠内を選択したときの処理;
+        console.log('select eventClick');
+        console.log(start.toISOString());
+        console.log(end.toISOString());
+       
   },
-  eventClick: function(calEvent, jsEvent, view) {
-    イベントをクリックしたときの処理;
-    alare('suda');
+  eventClick: function(event, jsEvent, view) {
+    //イベントをクリックしたときの処理;
+        console.log('eventClick');
+        console.log(event.title);
+        console.log(event.start.toISOString());
+        console.log(event.id);
+        //$('#show_click').submit();
+        var url = "{!! route('tasks.show',0) !!}";
+        url = url + event.id;
+        window.location.href = url;
   },
-  droppable: true, // イベントをドラッグできるかどうか
+  timezone:'local',
+  timeFormat: 'HH:mm',
   events:[
      @foreach($tasks as $task)
       {
       title:"{{ $task->title }}",
-      start:"{{ $task->start_date }}",
-      end:"{{ $task->end_date }}",
+      start:"{{ $task->start_date}}.{{$task->start_time }}",
+      end:"{{ $task->end_date }}.{{ $task->end_time }}",
+      id:"{{ $task->id }}",
+      allDay: false,
   },
   @endforeach
   ]
