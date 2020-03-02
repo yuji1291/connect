@@ -12,6 +12,7 @@
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "5.5.*",
         "league/flysystem-aws-s3-v3": "^1.0",
+        "nesbot/carbon": "1.36.2",
         "thomaswelton/laravel-gravatar": "~1.0"
     },
     "require-dev": {

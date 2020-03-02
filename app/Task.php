@@ -19,5 +19,5 @@ class Task extends Model
     {
         return $this->belongsToMany(Task::class, 'share', 'task_id','user_id')->withTimestamps();
     }
-     
+    
 }

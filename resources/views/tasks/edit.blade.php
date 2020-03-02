@@ -16,13 +16,13 @@
                 <div class="form-inline">
                     {!! Form::label('start_date', '開始時刻:') !!}
                     {!! Form::date('start_date', null, ['class' => 'form-control']) !!}
-                    {!! Form::time('start_time', null, ['class' => 'form-control']) !!}
+                    <div><input type="text" id="picker1" name="start_time" value="{{ substr($task->start_time, 0, 5) }}" class="form-control"></div>
                 </div> 
                 
                 <div class="form-inline">
                     {!! Form::label('end_date', '終了時刻:') !!}
                     {!! Form::date('end_date', null, ['class' => 'form-control']) !!}
-                    {!! Form::time('end_time', null, ['class' => 'form-control']) !!}
+                    <div><input type="text" id="picker2" name="end_time" value="{{ substr($task->end_time, 0, 5) }}" class="form-control"></div>
                 </div> 
         
                 <div class="form-group">
@@ -41,5 +41,6 @@
             {!! Form::close() !!}
         </div>
     </div>
-
+    @include('tasks.start_time')
+    @include('tasks.end_time')
 @endsection
