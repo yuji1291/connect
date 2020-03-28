@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'TasksController@index');
+Route::get('description', 'AccountController@description')->name('commons.description');
 
 // ユーザ登録
 Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
@@ -40,5 +41,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('tasks', 'TasksController');
     
     Route::get('account', 'AccountController@delete_confirm')->name('users.delete_confirm');
-    Route::get('description', 'AccountController@description')->name('commons.description');
+    
   });
